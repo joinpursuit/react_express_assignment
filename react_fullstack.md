@@ -1,3 +1,13 @@
+Terminal:
+- npm install express-generator -g
+- express backend
+- create-react-app frontend
+- cd backend
+- npm install
+- npm install pg-promise faker --save
+
+//-----------------------------------------------------------------------------
+
 # Expanding our Users App
 
 Today, we're actually implementing a whole full-stack app, tip to tail!
