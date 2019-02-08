@@ -32,5 +32,32 @@ const getSingleUser = (req, res, next) => {
     .catch(err => next(err));
 };
 
+const createUser = (req, res, next) => {
+  db.none('INSERT INTO users(username) VALUES(${username})', req.body)
+    .then(() => {
+      res.status(200)
+        .json({
+          status: 'success',
+          message: 'congrats new user '
+        })
+    })
+    .catch(err => next(err))
+}
 
-module.exports = {getAllUsers,getSingleUser}
+const updateUser = (req, res, next) => {
+  db.none('UPDATE users SET username=${username} WHERE id=${id}',{
+    username: req.body.username,
+    id: parseInt(req.params.id)
+  })
+  .then(() => {
+    res.status(200)
+      .json({
+        status: 'success',
+        message: 'Updated a USER!'
+      })
+  })
+  .catch(err => next(err))
+}
+
+
+module.exports = {getAllUsers,getSingleUser,createUser,updateUser}
