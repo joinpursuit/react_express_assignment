@@ -1,9 +1,9 @@
 import React from "react";
 import axios from "axios";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import NewUser from "./NewUsers.js";
-import AllUsers from "./allUsers.js";
 import UserLogIn from "./UserLogIn.js";
+import SearchBar from "./SearchBar.js";
 
 class Users extends React.Component {
   state = {
@@ -23,17 +23,33 @@ class Users extends React.Component {
   };
 
   render() {
+    const { users } = this.state;
+
+    let usersList = users.map(user => {
+      return (
+        <ul key={user.id}>
+          <li> Name: {user.name}</li>
+          <li> Phonenumber: {user.phonenumber} </li>
+        </ul>
+      );
+    });
     return (
       <>
-        <Switch>
-          <Route
-            exact
-            path="/users"
-            render={props => <AllUsers {...props} users={this.state.users} />}
-          />
-          <Route exact path="/users/new" component={NewUser} />
-          <Route exact path="/users/login" component={UserLogIn} />
-        </Switch>
+        <Route
+          exact
+          path="/users"
+          render={props => <SearchBar {...props} users={usersList} />}
+        />
+        <Route
+          exact
+          path="/users/login"
+          render={props => <UserLogIn {...props} users={usersList} />}
+        />
+        <Route
+          exact
+          path="/users/new"
+          render={props => <NewUser {...props} users={users} />}
+        />
       </>
     );
   }

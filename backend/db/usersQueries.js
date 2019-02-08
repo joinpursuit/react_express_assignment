@@ -12,12 +12,13 @@ const getAllUsers = (req, res, next) => {
     })
     .catch(err => {
       console.log("error", err);
-      next();
+      next(err);
     });
 };
 
 const getSingleUser = (req, res, next) => {
   const user_id = parseInt(req.params.id);
+
   db.one("SELECT * FROM users WHERE id=$1", [user_id])
     .then(user => {
       res.status(200).json({
@@ -28,13 +29,13 @@ const getSingleUser = (req, res, next) => {
     })
     .catch(err => {
       console.log("error", err);
-      next();
+      next(err);
     });
 };
 
 const createNewUser = (req, res, next) => {
   db.none(
-    "INSERT INTO users(name, phonenumber, password) VALUES( ${name}, ${phonenumber}, ${password})",
+    "INSERT INTO users(name, phonenumber) VALUES( ${name}, ${phonenumber})",
     req.body
   )
     .then(() => {
@@ -44,17 +45,16 @@ const createNewUser = (req, res, next) => {
     })
     .catch(err => {
       console.log("error", err);
-      next();
+      next(err);
     });
 };
 
 const editUser = (req, res, next) => {
-  db.any(
-    "UPDATE users SET name=${name} phonenumber=${phonenumber} password=${password} WHERE id=${id}",
+  db.none(
+    "UPDATE users SET name=${name} phonenumber=${phonenumber}  WHERE id=${id}",
     {
       name: req.body.name,
       phonenumber: req.body.phonenumber,
-      password: req.body.password,
       id: parseInt(req.params.id)
     }
   )

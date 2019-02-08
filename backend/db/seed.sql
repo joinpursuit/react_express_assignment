@@ -5,10 +5,9 @@ CREATE DATABASE userlist;
 
 CREATE TABLE users (
   ID SERIAL PRIMARY KEY,
-  name VARCHAR NOT NULL,
-  phonenumber VARCHAR,
-  password VARCHAR NOT NULL
+  name VARCHAR UNIQUE NOT NULL,
+  phonenumber VARCHAR UNIQUE
 );
 
-INSERT INTO users (name, phoneNumber, password)
-VALUES ('Carina', '1113335555' ,'password1'), ('Channing','2224446666', 'password2'), ('Thomas','3336667799', 'password3')
+INSERT INTO users (name, phoneNumber)
+VALUES ('Carina', '1113335555' ), ('Channing','2224446666'), ('Thomas','3336667799')

@@ -1,24 +1,22 @@
-import React from "react";
-
-const AllUsers = ({ users }) => {
-  // console.log(users);
-
-  let usersList = users.map(user => {
-    return (
-      <div key={user.id}>
-        <h4> Name: {user.name}</h4>
-
-        <p> Phonenumber: {user.phonenumber} </p>
-      </div>
-    );
-  });
-
-  return (
-    <div>
-      <h1> All Users </h1>
-      <div> {usersList} </div>
-    </div>
-  );
-};
-
-export default AllUsers;
+// import React from "react";
+//
+// const AllUsers = ({ users, search, selectedUser }) => {
+//   // console.log(users);
+//
+//   if (users.name === search) {
+//     return (
+//       <>
+//         <h4> Name: {users.name}</h4>
+//         <p> Phonenumber: {users.phonenumber} </p>
+//       </>
+//     );
+//   } else {
+//   }
+// };
+//
+// // export default AllUsers;
+// <AllUsers
+//   users={this.props.users}
+//   search={userSearch}
+//   selectedUser={selectedUser}
+// />;
