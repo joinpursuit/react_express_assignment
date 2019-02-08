@@ -33,7 +33,7 @@ const getSingleUser = (req, res, next) => {
 };
 
 const createUser = (req, res, next) => {
-  db.none('INSERT INTO users(username) VALUES(${username})', req.body)
+  db.none('INSERT INTO users(username,phonenumber) VALUES(${username},${phonenumber})', req.body)
     .then(() => {
       res.status(200)
         .json({
@@ -45,8 +45,9 @@ const createUser = (req, res, next) => {
 }
 
 const updateUser = (req, res, next) => {
-  db.none('UPDATE users SET username=${username} WHERE id=${id}',{
+  db.none('UPDATE users SET username=${username}, phonenumber=${phonenumber} WHERE id=${id}',{
     username: req.body.username,
+    phonenumber:req.body.phonenumber,
     id: parseInt(req.params.id)
   })
   .then(() => {
