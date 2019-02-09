@@ -22,11 +22,13 @@ class NewUser extends React.Component {
         phonenumber: this.state.userInputNumber
       })
       .then(res => {
-        console.log(res.data);
         this.setState({
           userInputName: "",
           userInputNumber: ""
         });
+      })
+      .then(() => {
+        this.props.getAllUsers();
       });
   };
 

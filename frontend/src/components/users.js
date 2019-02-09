@@ -48,7 +48,9 @@ class Users extends React.Component {
         <Route
           exact
           path="/users/new"
-          render={props => <NewUser {...props} users={users} />}
+          render={props => (
+            <NewUser {...props} users={users} getAllUsers={this.getallUsers} />
+          )}
         />
       </>
     );
