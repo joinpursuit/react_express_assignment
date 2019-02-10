@@ -3,8 +3,7 @@ import React from "react";
 class UserLogIn extends React.Component {
   state = {
     nameInput: "",
-    passwordInput: "",
-    message: ""
+    passwordInput: ""
   };
 
   handleInput = e => {
@@ -14,7 +13,17 @@ class UserLogIn extends React.Component {
   };
 
   render() {
-    const { nameInput, passwordInput, message } = this.state;
+    const { nameInput, passwordInput } = this.state;
+    // const { users } = this.props;
+    // let usersList = users.map(user => {
+    //   return (
+    //     <ul key={user.id}>
+    //       <li> Name: {user.name}</li>
+    //       <li> Phonenumber: {user.phonenumber} </li>
+    //     </ul>
+    //   );
+    // });
+
     return (
       <>
         <h1> login </h1>

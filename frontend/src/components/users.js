@@ -7,25 +7,54 @@ import SearchBar from "./SearchBar.js";
 
 class Users extends React.Component {
   state = {
-    users: []
+    users: [],
+    usersInfo: [],
+    selectedUser: null,
+    message: ""
   };
 
   getallUsers = () => {
-    axios.get("/users").then(res =>
-      this.setState({
-        users: res.data.users
-      })
-    );
+    axios.get("/users").then(res => this.allUserInfo(res.data.users));
   };
 
   componentDidMount = () => {
     this.getallUsers();
   };
 
-  render() {
-    const { users } = this.state;
+  allUserInfo = users => {
+    let usersInfo = users.map(user => {
+      return {
+        name: user.name,
+        phonenumber: user.phonenumber
+      };
+    });
 
-    let usersList = users.map(user => {
+    this.setState({
+      user: users,
+      usersInfo: usersInfo,
+      selectedUser: usersInfo
+    });
+  };
+
+  filterUser = userSearch => {
+    let newState = [...this.state.usersInfo];
+    newState = newState.filter(user => {
+      if (user.name.toLowerCase() === userSearch.toLowerCase()) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    this.setState({
+      selectedUser: newState,
+      message: "user found"
+    });
+  };
+
+  render() {
+    const { users, selectedUser, usersInfo } = this.state;
+
+    let userdisplay = selectedUser.map(user => {
       return (
         <ul key={user.id}>
           <li> Name: {user.name}</li>
@@ -33,24 +62,36 @@ class Users extends React.Component {
         </ul>
       );
     });
+
     return (
       <>
         <Route
           exact
           path="/users"
-          render={props => <SearchBar {...props} users={usersList} />}
-        />
-        <Route
-          exact
-          path="/users/login"
-          render={props => <UserLogIn {...props} users={usersList} />}
+          render={props => (
+            <SearchBar
+              {...props}
+              users={users}
+              selectedUser={selectedUser}
+              filterUser={this.filterUser}
+            />
+          )}
         />
         <Route
           exact
           path="/users/new"
           render={props => (
-            <NewUser {...props} users={users} getAllUsers={this.getallUsers} />
+            <NewUser
+              {...props}
+              users={usersInfo}
+              getAllUsers={this.getallUsers}
+            />
           )}
+        />
+        <Route
+          exact
+          path="/users/login"
+          render={props => <UserLogIn {...props} users={usersInfo} />}
         />
       </>
     );

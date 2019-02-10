@@ -15,7 +15,7 @@ class NewUser extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { users } = this.props;
+
     axios
       .post("/users", {
         name: this.state.userInputName,
@@ -47,7 +47,7 @@ class NewUser extends React.Component {
     });
     return (
       <>
-        <ul> {myUsers} </ul>
+        <br />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="name"> Name: </label>
           <input
@@ -67,6 +67,7 @@ class NewUser extends React.Component {
           />
           <button type="submit"> New User </button>
         </form>
+        <ul> {myUsers} </ul>
       </>
     );
   }

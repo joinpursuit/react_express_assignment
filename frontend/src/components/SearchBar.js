@@ -3,9 +3,7 @@ import React from "react";
 
 class SearchBar extends React.Component {
   state = {
-    selectedUser: null,
-    userSearch: "",
-    message: ""
+    userSearch: ""
   };
 
   handleChange = e => {
@@ -15,27 +13,24 @@ class SearchBar extends React.Component {
   };
 
   handleSearch = e => {
-    const { userSearch, selectedUser, message } = this.state;
-    const { users } = this.props;
-
     e.preventDefault();
-
-    if (userSearch) {
-      let findUser = users.name.find(
-        user => user.name.toLowerCase() === userSearch.toLowerCase()
-      );
-      this.setState({
-        selectedUser: findUser
-      });
-    } else {
-      this.setState({
-        message: "USER NOT FOUND"
-      });
-    }
+    this.props.filterUser(this.state.userSearch);
   };
 
   render() {
-    const { userSearch, selectedUser, message } = this.state;
+    const { userSearch } = this.state;
+    const { selectedUser } = this.props;
+    console.log(selectedUser);
+    //
+    // let userDisplay = selectedUser.map(user => {
+    //
+    //   return (
+    //     <ul key={user.id}>
+    //       <li> Name: {user.name}</li>
+    //       <li> Phonenumber: {user.phonenumber} </li>
+    //     </ul>
+    //   );
+    // });
 
     return (
       <div>
@@ -49,16 +44,38 @@ class SearchBar extends React.Component {
             type="text"
             name="userSearch"
             value={userSearch}
+            placeholder="search for user"
             onChange={this.handleChange}
           />
           <input type="submit" value="search" />
         </form>
 
-        <div>{selectedUser ? selectedUser.name : null}</div>
-        {message}
+        <br />
+        <div>{userSearch}</div>
       </div>
     );
   }
 }
 
 export default SearchBar;
+
+//
+//   const { userSearch, selectedUser, message } = this.state;
+//   const { users } = this.props;
+//
+//   e.preventDefault();
+//
+//   if (userSearch) {
+//     let findUser = users.name.find(
+//       user => user.name.toLowerCase() === userSearch.toLowerCase()
+//     );
+//     this.setState({
+//       selectedUser: findUser,
+//       message: 'user found',
+//     });
+//   } else {
+//     this.setState({
+//       message: 'USER NOT FOUND',
+//     });
+//   }
+// };
