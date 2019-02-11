@@ -41,7 +41,9 @@ const createUser = (req, res, next) => {
           message: 'congrats new user '
         })
     })
-    .catch(err => next(err))
+    .catch(err => {
+      console.log(err)
+      return next(err)})
 }
 
 const updateUser = (req, res, next) => {
