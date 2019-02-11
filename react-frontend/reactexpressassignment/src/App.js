@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
 import axios from "axios";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
+import { NavBar } from "./components/Navbar";
+import { Home } from "./components/Home";
+import Users from "./components/Users";
 
 class App extends Component {
   constructor() {
@@ -10,27 +12,27 @@ class App extends Component {
       people: []
     };
   }
-  componentDidMount(){
-    axios.get('/users')
-    .then(data=>{
+  componentDidMount() {
+    axios.get("/users").then(data => {
       this.setState({
-        people:data
-      })
-    })
+        people: data.data.body
+      });
+    });
   }
-  render() {
-    console.log(this.state)
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
 
-          Assignment
-          </header>
-      </div>
+  render() {
+    // console.log(this.state)
+    return (
+      <BrowserRouter>
+        <div className="App">
+        <Route component={NavBar} />
+          <Switch>
+
+            <Route exact path="/" component={Home} />
+            <Route exact path="/users" component={Users} />
+          </Switch>
+        </div>
+      </BrowserRouter>
     );
   }
 }
