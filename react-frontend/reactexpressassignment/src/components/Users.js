@@ -10,7 +10,8 @@ export default class Users extends React.Component {
       inputText: "",
       inputNumber:"",
       username: "",
-      usersShowing: false
+      usersShowing: false,
+      toggle: "Show Users"
     };
   }
   componentDidMount = () => {
@@ -20,14 +21,18 @@ export default class Users extends React.Component {
       });
     });
   };
-
-
-  toggleShowing = e => {
-    this.setState({ usersShowing: !this.state.usersShowing });
+    toggleUserList = () => {
+    let changeButtonPlaceholder =
+      this.state.toggle === "Show Users"
+        ? "Hide Users"
+        : "Show Users";
+    this.setState({
+      usersShowing: !this.state.usersShowing,
+      toggle: changeButtonPlaceholder
+    });
   };
 
   handleCreateUser = event => {
-    event.preventDefault();
     const user = {
     username: this.state.inputText,
     phonenumber:this.state.inputNumber
@@ -71,17 +76,35 @@ export default class Users extends React.Component {
     });
   };
 
-  render() {
 
+  render() {
+    const showUsers = this.state.users.map(el => {
+      console.log(el, el.username);
+      return (
+        <div
+          key={el.id}
+          username={el.username}
+          number={el.phonenumber}
+        >
+          <ul>
+            <li>Name:{el.username}</li>
+            <br />
+            <li>phonenumber:{el.phonenumber}</li>
+            <br />
+
+          </ul>
+        </div>
+      );
+    });
     console.log(this.state);
     return (
       <div className="users">
         <h1>All Users </h1>
 
-        <button onClick={this.toggleShowing}>
-      {this.usersShowing ? "Hide Users" : "Show Users"}
+        <button onClick={this.toggleUserList}>
+      {this.state.toggle}
         </button>
-        {this.usersShowing ? this.user: null}
+        {this.state.usersShowing ? showUsers : null}
 
 
         <h3>Add a Person</h3>
