@@ -59,7 +59,9 @@ const updateUser = (req, res, next) => {
         message: 'Updated a USER!'
       })
   })
-  .catch(err => next(err))
+  .catch(err => {
+    console.log(err)
+    return next(err)})
 }
 
 

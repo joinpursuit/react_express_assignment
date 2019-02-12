@@ -9,11 +9,7 @@ export const Home = () => {
         <br/>
         Princess bubblegum was here
       </p>
-      <img
-        className="pb"
-        src="https://img.icons8.com/ios/2x/princess-bubblegum-filled.png"
-        alt="My"
-      />
+    <img src="https://img.icons8.com/color/100/000000/princess-bubblegum.png" alt='somethin'/>
     </div>
   );
 };

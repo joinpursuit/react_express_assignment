@@ -9,7 +9,8 @@ export default class Users extends React.Component {
       users: [],
       inputText: "",
       inputNumber:"",
-      username: ""
+      username: "",
+      usersShowing: false
     };
   }
   componentDidMount = () => {
@@ -18,6 +19,11 @@ export default class Users extends React.Component {
         users: data.data.body
       });
     });
+  };
+
+
+  toggleShowing = e => {
+    this.setState({ usersShowing: !this.state.usersShowing });
   };
 
   handleCreateUser = event => {
@@ -33,22 +39,22 @@ export default class Users extends React.Component {
     });
   };
 
-  // // When the form is submitted display search result
-  //   handleSubmit=(event)=>{
-  //     event.preventDefault();
-  //     console.log("handling someething");
-  //     this.state.inputText // What we are searching for
-  //     let searchResult = this.users.find((person)=>{
-  //   return person.username === this.state.inputText
-  // })
-  // Ways to search in an array .filter .find .indexof .reduce
+  handleEditUser = event => {
+    event.preventDefault();
+    const user = {
+    username: this.state.inputText,
+    phonenumber:this.state.inputNumber
+    }
 
-  // }
-  handleClear = event => {
-    this.setState({
-      inputText: ""
+    axios.put(`/users/${this.state.person.id}`,  user ).then(res => {
+      console.log(res);
+      console.log(res.data);
     });
   };
+ //
+
+
+
   findPerson = e => {
     e.preventDefault();
     let person = this.state.users.find(
@@ -57,7 +63,7 @@ export default class Users extends React.Component {
     );
     console.log(person);
     this.setState({ person, inputText: "" });
-  };
+  }
 
   handleChange = e => {
     this.setState({
@@ -66,10 +72,18 @@ export default class Users extends React.Component {
   };
 
   render() {
+
     console.log(this.state);
     return (
       <div className="users">
         <h1>All Users </h1>
+
+        <button onClick={this.toggleShowing}>
+      {this.usersShowing ? "Hide Users" : "Show Users"}
+        </button>
+        {this.usersShowing ? this.user: null}
+
+
         <h3>Add a Person</h3>
         <form onSubmit={this.handleCreateUser}>
           <input
@@ -90,6 +104,9 @@ export default class Users extends React.Component {
         </form>
 
         <div className="searchUser">
+
+
+
           <h3>Search for a Person</h3>
           <form onSubmit={this.findPerson}>
             <input
@@ -101,13 +118,39 @@ export default class Users extends React.Component {
             />
             <input type="submit" value="Submit" />
           </form>
-          <UsersDisplay person={this.state.person} />
+          <UsersDisplay person={this.state.person} handleChange={this.handleChange} inputText={this.state.inputText} inputNumber={this.state.inputNumber}
+           edit = {this.handleEditUser}
+           />
         </div>
       </div>
     );
   }
 }
-// <button onClick={this.handleClear} type="button">
-//   {" "}
-//   Clear{" "}
-// <UsersDisplay person={this.user}/>
+
+
+
+// usersList = this.users.map(list => {
+//  let { id, username, phonenumber } = list;
+//  return (
+//    <li>
+//   Username:{username}
+//     phonenumber={phonenumber}
+//     id={id} />
+//  )
+// })
+// // When the form is submitted display search result
+//   handleSubmit=(event)=>{
+//     event.preventDefault();
+//     console.log("handling someething");
+//     this.state.inputText // What we are searching for
+//     let searchResult = this.users.find((person)=>{
+//   return person.username === this.state.inputText
+// })
+// Ways to search in an array .filter .find .indexof .reduce
+
+// }
+// handleClear = event => {
+//   this.setState({
+//     inputText: ""
+//   });
+// };

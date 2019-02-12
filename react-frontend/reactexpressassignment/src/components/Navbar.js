@@ -5,8 +5,8 @@ import { NavLink } from "react-router-dom";
 export const NavBar = () => {
   return (
     <nav>
-          <NavLink to={"/"}><img src="https://img.icons8.com/ios/2x/ice-king-filled.png" alt="CSS-Tricks" /></NavLink>
-          <NavLink to={"/users"}><img src="https://img.icons8.com/ios/2x/ice-king-filled.png" alt="CSS-Tricks" /></NavLink>
+          <NavLink to={"/"}><img src="https://img.icons8.com/color/100/000000/ice-king.png" alt ='something'/></NavLink>
+          <NavLink to={"/users"}><img src="https://img.icons8.com/dusk/100/000000/finn.png" alt='something'/></NavLink>
 
 
     </nav>

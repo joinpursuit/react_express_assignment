@@ -4,6 +4,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import { NavBar } from "./components/Navbar";
 import { Home } from "./components/Home";
 import Users from "./components/Users";
+import "./App.css";
 
 class App extends Component {
   constructor() {
@@ -25,7 +26,8 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-        <Route component={NavBar} />
+      <marquee> <Route component={NavBar} /> </marquee>
+
           <Switch>
 
             <Route exact path="/" component={Home} />
