@@ -1,12 +1,35 @@
 Terminal:
 - npm install express-generator -g
 - express backend
-- create-react-app frontend
+    - create-react-app frontend
 - cd backend
 - npm install
+- npm start
+- localhost:3000/ (type out in browser address bar)
 - npm install pg-promise faker --save
 
 //-----------------------------------------------------------------------------
+coreyladovsky [3:01 PM]
+Bonus: create a package json on the outermost folder and follow this post: https://stackoverflow.com/questions/30950032/how-can-i-run-multiple-npm-scripts-in-parallel . After installing npm i concurrently --save-dev you can run something like     “dev”: “concurrently --kill-others \“cd frontend && npm start\” \“cd backend && npm start\“”
+and get both servers going in one shot by simply typing npm run dev .
+*Stack Overflow*
+How can I run multiple npm scripts in parallel?
+In my package.json I have these two scripts: "scripts": { "start-watch": "nodemon run-babel index.js", "wp-server": "webpack-dev-server", } I have to run these 2 scripts in parallel
+
+Alejo [3:29 PM]
+CSS only game 2006 http://www.cssplay.co.uk/menu/amazing.html#nogo
+CSS play
+Stu Nicholls | CSS PLAY | An amazing CSS puzzle
+CSS play - a css maze puzzle
+
+//========
+in client: npm start
+in react-backend: npm start
+in db: psql -f users.sql
+localhost:3000/users --- react
+localhost:3100/users  --- express
+
+//======================================================
 
 # Expanding our Users App
 
