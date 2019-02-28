@@ -1,0 +1,14 @@
+li{
+  list-style: none;
+    text-align: center;
+}
+
+.showUsers{
+  display: flex;
+  justify-content:center;
+}
+
+/* .users{
+display: flex;
+justify-content: center;
+} */

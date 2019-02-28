@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-      <marquee> <Route component={NavBar} /> </marquee>
+       <Route component={NavBar} /> 
 
           <Switch>
 

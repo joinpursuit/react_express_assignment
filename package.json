@@ -1,0 +1,21 @@
+{
+  "name": "react_express_assignment",
+  "version": "1.0.0",
+  "description": "Expanding our Users App Today, we're actually implementing a whole full-stack app, tip to tail! <!-- Part 1: Clone the Users App Create a clone of the Users app from today's lecture notes from scratch. Just like the project, include the ability to:",
+  "main": "index.js",
+  "scripts": {
+    "start": "node react-backend/bin/www",
+    "heroku-postbuild": "cd react-backend && npm install && cd ../react-frontend && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acabrera100/react_express_assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acabrera100/react_express_assignment/issues"
+  },
+  "homepage": "https://github.com/acabrera100/react_express_assignment#readme"
+}

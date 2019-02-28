@@ -11,4 +11,4 @@ username VARCHAR NOT NULL,
 phonenumber VARCHAR NOT NULL
 );
 
-INSERT INTO users(username, phonenumber) VALUES ('Wakanda', 99991), ('America', 23232), ('SteveRogers', 342543654), ('Hoopla', 2345), ('Wuphe', 6543), ('Spooderman', 9999);
+INSERT INTO users(username, phonenumber) VALUES ('Wakanda', 99991), ('Heroku', 23232), ('SteveRogers', 342543654), ('Hoopla', 2345), ('Wuphe', 6543), ('Spooderman', 9999);

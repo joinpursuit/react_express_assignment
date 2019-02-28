@@ -35,6 +35,7 @@ body{
     /* color: darkblue; */
     /* background-image: url("http://www.4usky.com/data/out/2/163986705-adventure-time-wallpapers.jpg"); */
     background-image: url("https://i.imgur.com/UuVLIRx.jpg");
-    background-size: 1500px 1000px;
-    background-repeat: no-repeat;
+    background-size: 1500px 2000px;
+    background-repeat:repeat;
+    background-attachment:local;
 }
