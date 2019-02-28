@@ -38,6 +38,7 @@ export default class Users extends React.Component {
   };
 
     handleCreateUser = event => {
+      event.preventDefault()
     const user = {
     username: this.state.inputTextCreateUser,
     phonenumber:this.state.inputNumber
@@ -47,10 +48,11 @@ export default class Users extends React.Component {
       console.log(res);
       console.log(res.data);
     });
-    
+
   };
 
   handleEditUser = event => {
+    event.preventDefault()
     const user = {
     username: this.state.inputTextEdit,
     phonenumber:this.state.inputNumber

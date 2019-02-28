@@ -29,7 +29,7 @@ app.use("/users", usersRouter);
 
 app.use("*", (req, res, next) => {
   res.sendFile(
-    path.join(__dirname, "../react-frontend/reactexpressassignment/public/index.html")
+    path.join(__dirname, "../react-frontend/reactexpressassignment/build/index.html")
   );
 });
 
