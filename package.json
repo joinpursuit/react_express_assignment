@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node react-backend/bin/www",
-    "heroku-postbuild": "cd react-backend && npm install && cd ../react-frontend && npm install"
+    "heroku-postbuild": "cd react-backend && npm install && cd ../react-frontend/reactexpressassignment && npm install && npm run build"
   },
   "repository": {
     "type": "git",
